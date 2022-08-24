@@ -24,4 +24,23 @@ contract SmallProxy is Proxy {
         }
     }
 
+    function getDataToTransact(uint256 numberToUpdate) public pure returns (bytes memory) {
+        return abi.encodeWithSignature("setValue(uint256)", numberToUpdate);
+    }
+}
+
+contract ImplementationA {
+    uint256 public value;
+
+    function setValue(uint256 newValue) public {
+        value = newValue;
+    }
+}
+
+contract ImplementationB {
+    uint256 public value;
+
+    function setValue(uint256 newValue) public {
+        value = newValue + 88;
+    }
 }
